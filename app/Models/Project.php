@@ -20,7 +20,7 @@ class Project extends Model
     {
        $done= $this->tasks()->where('status',1)->count();
         $total= $this->tasks()->count();
-        return $done / (($total === 0) ?$total=1:$total) * 100;
+        return number_format($done / (($total === 0) ?$total=1:$total) * 100, 2) ;
     }
     public function getCountTasksAttribute()
     {
