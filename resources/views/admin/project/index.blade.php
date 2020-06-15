@@ -13,6 +13,8 @@
             <tr class="text-capitalize">
                 <th scope="col">#</th>
                 <th scope="col">project title</th>
+                <th scope="col">Num of Tasks</th>
+                <th scope="col">Percent</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
@@ -23,6 +25,8 @@
                     <tr id="{{$project->id}}">
                         <td>{{$index+1}}</td>
                         <td>{{$project->title ?? ''}}</td>
+                        <td>{{$project->count_tasks ?? ''}}</td>
+                        <td>{{$project->percent ?? ''}} &#37; </td>
                         <td><a href="{{route('projects.edit',$project->id)}}"
                                class="btn btn-outline-primary text-capitalize">update</a></td>
                         <td><!-- Button trigger modal -->
