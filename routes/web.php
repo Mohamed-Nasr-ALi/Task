@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/all', function () {
+  return  \App\Models\Project::all();
+});
 Route::get('/admin', function (){
    return view('home');
 })->name('home');
