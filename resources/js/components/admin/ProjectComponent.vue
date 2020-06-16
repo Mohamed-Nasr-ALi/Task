@@ -166,7 +166,7 @@
                         this.$Progress.finish()
 
                         $('#addNew').modal('hide');
-
+                        $('.modal-backdrop').remove();
                     })
                     .catch(() => {
                         console.log("Error......")

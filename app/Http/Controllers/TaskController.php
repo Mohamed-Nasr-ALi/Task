@@ -43,7 +43,8 @@ class TaskController extends Controller
     {
         //
         $tasks = $this->taskRepository->all();
-        return $tasks;
+        $projects = $this->projectRepository->all();
+        return [$tasks,$projects];
 //        return view($this->views['index_page'],compact('tasks'));
     }
 

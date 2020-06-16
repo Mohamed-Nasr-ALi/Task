@@ -38,7 +38,7 @@ class TaskRequest extends BaseFormRequest
     public function messages()
     {
         return [
-            'task_title.required' => 'title number is required',
+            'task_title.required' => 'title is required',
             'task_title.unique' => 'title must be unique',
             'project_id.required' => 'project is required',
             'status.in' => 'status must be in the same value',

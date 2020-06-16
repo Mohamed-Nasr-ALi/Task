@@ -22,11 +22,10 @@
                                 <th scope="col">project name</th>
                                 <th scope="col">Edit | Delete</th>
                             </tr>
-
                             <tr v-for="task in tasks" :key="task.id">
                                 <td>{{ task.id }}</td>
                                 <td>{{ task.task_title | strToUpper }}</td>
-                                <td>{{ task.status }} &#37;</td>
+                                <td>{{ task.status === 1 ? 'done' : 'in progress' }}</td>
                                 <td>{{ task.project_tasks }}</td>
 
                                 <td>
@@ -70,15 +69,36 @@
                     <form @submit.prevent="editMode ? updateTask() : createTask()">
                         <div class="modal-body">
                             <div class="form-group">
-                                <input v-model="form.task_title" type="text" name="task_title"
+                                <label class="text-capitalize" for="task_title">task title</label>
+                                <input id="task_title" v-model="form.task_title" type="text" name="task_title"
                                        placeholder="Title"
                                        class="form-control" :class="{ 'is-invalid': form.errors.has('task_title') }">
                                 <has-error :form="form" field="task_title"></has-error>
                             </div>
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="text-capitalize" for="project_id">task project</label>
+                                <select id="project_id" name="project_id" v-model="form.project_id" class="form-control" :class="{ 'is-invalid': form.errors.has('project_id') }">
+                                    <option v-for="project in projects" :key="project.id" :value="project.id">
+                                        {{project.title}}
+                                    </option>
+                                </select>
+                                <has-error :form="form" field="project_id"></has-error>
+                            </div>
 
+                            <div class="form-group" v-if="editMode">
+                                <label class="text-capitalize" for="project_id_update">task status</label>
+                                <select name="status" v-model="form.status" id="project_id_update" class="form-control" :class="{ 'is-invalid': form.errors.has('status') }">
+                                    <option value="0">
+                                        in progress
+                                    </option>
+                                    <option value="1">
+                                       done
+                                    </option>
+                                </select>
+                                <has-error :form="form" field="status"></has-error>
+                            </div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button v-show="editMode" type="submit" class="btn btn-primary">Update</button>
@@ -96,9 +116,6 @@
 
 <script>
     export default {
-        mounted() {
-            axios.get("admin/tasks").then(data => console.log(data.data));
-        },
         data() {
             return {
                 editMode: false,
@@ -108,8 +125,7 @@
                     id: '',
                     task_title: '',
                     status: '',
-                    project_id: '',
-                    project_tasks: '',
+                    project_id: ''
 
                 })
             }
@@ -148,7 +164,8 @@
 
             loadTasks() {
 
-                axios.get("admin/tasks").then(data => (this.tasks = data.data));
+                axios.get("admin/tasks").then(data => (this.tasks = data.data[0]));
+                axios.get("admin/tasks").then(data => (this.projects = data.data[1]));
 
                 //pick data from controller and push it into tasks object
 
@@ -171,14 +188,11 @@
                         this.$Progress.finish()
 
                         $('#addNew').modal('hide');
-
+                        $('.modal-backdrop').remove();
                     })
                     .catch(() => {
                         console.log("Error......")
                     })
-
-
-                //this.loadTasks();
             },
             deleteTask(id) {
                 Swal.fire({
