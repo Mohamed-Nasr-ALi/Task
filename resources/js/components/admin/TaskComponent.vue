@@ -22,8 +22,8 @@
                                 <th scope="col">project name</th>
                                 <th scope="col">Edit | Delete</th>
                             </tr>
-                            <tr v-for="task in tasks" :key="task.id">
-                                <td>{{ task.id }}</td>
+                            <tr v-for="(task,index) in tasks" :key="task.id">
+                                <td >{{ index+=1 }}</td>
                                 <td>{{ task.task_title | strToUpper }}</td>
                                 <td>{{ task.status === 1 ? 'done' : 'in progress' }}</td>
                                 <td>{{ task.project_tasks }}</td>
@@ -127,7 +127,8 @@
                     status: '',
                     project_id: ''
 
-                })
+                }),
+                counter: 0
             }
         },
         methods: {
