@@ -25,6 +25,7 @@ class TaskRepository implements ProjectInterface
     // create a new record in the database
     public function create(array $data)
     {
+        $data = array_merge($data,['status'=>0]);
         return $this->model->create($data);
     }
 

@@ -23,8 +23,8 @@
                                 <th scope="col">Edit | Delete</th>
                             </tr>
 
-                            <tr v-for="project in projects" :key="project.id">
-                                <td>{{ project.id }}</td>
+                            <tr v-for="(project,index) in projects" :key="project.id">
+                                <td >{{ index+=1 }}</td>
                                 <td>{{ project.title | strToUpper }}</td>
                                 <td>{{ project.count_tasks }}</td>
                                 <td>{{ project.percent }} &#37;</td>
@@ -166,7 +166,7 @@
                         this.$Progress.finish()
 
                         $('#addNew').modal('hide');
-
+                        $('.modal-backdrop').remove();
                     })
                     .catch(() => {
                         console.log("Error......")
