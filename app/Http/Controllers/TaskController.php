@@ -43,7 +43,8 @@ class TaskController extends Controller
     {
         //
         $tasks = $this->taskRepository->all();
-        return view($this->views['index_page'],compact('tasks'));
+        return $tasks;
+//        return view($this->views['index_page'],compact('tasks'));
     }
 
     /**
@@ -55,7 +56,8 @@ class TaskController extends Controller
     {
         //
         $projects = $this->projectRepository->all();
-        return view($this->views['create_page'],compact('projects'));
+        return $projects;
+//        return view($this->views['create_page'],compact('projects'));
     }
 
     /**
@@ -69,7 +71,9 @@ class TaskController extends Controller
         //
         $validated = $request->validated();
         $this->taskRepository->create($validated);
-        return  redirect(route(self::indexRoute))->with('message',$this->messages['add']);
+        $tasks = $this->taskRepository->all();
+        return $tasks;
+//        return  redirect(route(self::indexRoute))->with('message',$this->messages['add']);
     }
 
     /**
@@ -94,7 +98,8 @@ class TaskController extends Controller
         //
         $projects = $this->projectRepository->all();
         $task= $this->taskRepository->show($id);
-        return view($this->views['update_page'],compact(['task','projects']));
+        return ['task'=>$task,'projects'=>$projects];
+//        return view($this->views['update_page'],compact(['task','projects']));
     }
 
     /**
@@ -109,7 +114,9 @@ class TaskController extends Controller
         //
         $validated = $request->validated();
         $this->taskRepository->update($validated,$id);
-        return  redirect(route(self::indexRoute))->with('message',$this->messages['update']);
+        $tasks = $this->taskRepository->all();
+        return $tasks;
+//        return  redirect(route(self::indexRoute))->with('message',$this->messages['update']);
     }
 
 
@@ -123,7 +130,9 @@ class TaskController extends Controller
     {
         //
         $this->taskRepository->delete($id);
-        return redirect(route(self::indexRoute))->with('message', $this->messages['delete']);
+        $tasks = $this->taskRepository->all();
+        return $tasks;
+//        return redirect(route(self::indexRoute))->with('message', $this->messages['delete']);
     }
 
 }
