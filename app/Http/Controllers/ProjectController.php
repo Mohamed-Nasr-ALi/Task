@@ -40,7 +40,8 @@ class ProjectController extends Controller
     {
         //
         $projects = $this->projectRepository->all();
-        return view($this->views['index_page'],compact('projects'));
+        return $projects;
+//        return view($this->views['index_page'],compact('projects'));
     }
 
     /**
@@ -64,7 +65,9 @@ class ProjectController extends Controller
         //
         $validated = $request->validated();
         $this->projectRepository->create($validated);
-        return  redirect(route(self::indexRoute))->with('message',$this->messages['add']);
+        $projects = $this->projectRepository->all();
+        return $projects;
+      //  return  redirect(route(self::indexRoute))->with('message',$this->messages['add']);
     }
 
     /**
@@ -88,7 +91,8 @@ class ProjectController extends Controller
     {
 
         $project= $this->projectRepository->show($id);
-        return view($this->views['update_page'],compact('project'));
+        return $project;
+//        return view($this->views['update_page'],compact('project'));
     }
 
     /**
@@ -103,7 +107,9 @@ class ProjectController extends Controller
         //
         $validated = $request->validated();
         $this->projectRepository->update($validated,$id);
-        return  redirect(route(self::indexRoute))->with('message',$this->messages['update']);
+        $projects = $this->projectRepository->all();
+        return $projects;
+     //   return  redirect(route(self::indexRoute))->with('message',$this->messages['update']);
     }
 
 
@@ -117,7 +123,9 @@ class ProjectController extends Controller
     {
         //
         $this->projectRepository->delete($id);
-        return redirect(route(self::indexRoute))->with('message', $this->messages['delete']);
+        $projects = $this->projectRepository->all();
+        return $projects;
+      //  return redirect(route(self::indexRoute))->with('message', $this->messages['delete']);
     }
 
 }
