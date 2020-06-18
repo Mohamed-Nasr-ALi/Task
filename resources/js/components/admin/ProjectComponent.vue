@@ -127,7 +127,7 @@
                             title: 'Project updated successfully'
                         })
 
-                        Fire.$emit('AfterCreatedProjectLoadIt');
+                       // Fire.$emit('AfterCreatedProjectLoadIt');
 
                         $('#addNew').modal('hide');
                     })
@@ -151,19 +151,19 @@
 
             createProject() {
 
-                this.$Progress.start()
+               // this.$Progress.start()
 
                 this.form.post('admin/projects')
                     .then(() => {
 
-                        Fire.$emit('AfterCreatedProjectLoadIt'); //custom events
+                      //  Fire.$emit('AfterCreatedProjectLoadIt'); //custom events
 
                         Toast.fire({
                             icon: 'success',
                             title: 'Project created successfully'
                         })
 
-                        this.$Progress.finish()
+                      //  this.$Progress.finish()
 
                         $('#addNew').modal('hide');
                         $('.modal-backdrop').remove();

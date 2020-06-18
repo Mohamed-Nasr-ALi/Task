@@ -149,7 +149,7 @@
                             title: 'Task updated successfully'
                         })
 
-                        Fire.$emit('AfterCreatedTaskLoadIt');
+                      //  Fire.$emit('AfterCreatedTaskLoadIt');
 
                         $('#addNew').modal('hide');
                     })
@@ -174,19 +174,19 @@
 
             createTask() {
 
-                this.$Progress.start()
+              //  this.$Progress.start()
 
                 this.form.post('admin/tasks')
                     .then(() => {
 
-                        Fire.$emit('AfterCreatedTaskLoadIt'); //custom events
+                      //  Fire.$emit('AfterCreatedTaskLoadIt'); //custom events
 
                         Toast.fire({
                             icon: 'success',
                             title: 'Task created successfully'
                         })
 
-                        this.$Progress.finish()
+                      //  this.$Progress.finish()
 
                         $('#addNew').modal('hide');
                         $('.modal-backdrop').remove();
