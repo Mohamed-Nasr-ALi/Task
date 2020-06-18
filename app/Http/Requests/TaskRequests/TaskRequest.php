@@ -23,11 +23,20 @@ class TaskRequest extends BaseFormRequest
      */
     public function rules()
     {
-        return [
-            'task_title' => 'required|string|unique:tasks,task_title,'.request()->id,
-            'project_id' => 'required|numeric|exists:projects,id',
-            'status' => 'numeric|in:0,1',
-        ];
+        if (request('id')){
+            return [
+                'task_title' => 'required|string|unique:tasks,task_title,'.request()->id,
+                'project_id' => 'required|numeric|exists:projects,id',
+                'status' => 'numeric|in:0,1',
+            ];
+        }else{
+            return [
+                'task_title' => 'required|string|unique:tasks,task_title',
+                'project_id' => 'required|numeric|exists:projects,id',
+                'status' => 'numeric|in:0,1',
+            ];
+        }
+
     }
 
     /**
