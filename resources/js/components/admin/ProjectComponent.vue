@@ -127,9 +127,10 @@
                             title: 'Project updated successfully'
                         })
 
-                       // Fire.$emit('AfterCreatedProjectLoadIt');
+                        Fire.$emit('AfterCreatedProjectLoadIt');
 
                         $('#addNew').modal('hide');
+                        this.loadProjects();
                     })
                     .catch(() => {
                         console.log("Error.....")
@@ -151,7 +152,7 @@
 
             createProject() {
 
-               // this.$Progress.start()
+                this.$Progress.start()
 
                 this.form.post('admin/projects')
                     .then(() => {
@@ -163,17 +164,15 @@
                             title: 'Project created successfully'
                         })
 
-                      //  this.$Progress.finish()
+                        this.$Progress.finish()
 
                         $('#addNew').modal('hide');
                         $('.modal-backdrop').remove();
+                        this.loadProjects();
                     })
                     .catch(() => {
                         console.log("Error......")
                     })
-
-
-                //this.loadProjects();
             },
             deleteProject(id) {
                 Swal.fire({
