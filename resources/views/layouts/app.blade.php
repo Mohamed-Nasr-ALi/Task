@@ -19,7 +19,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!--fontawesome-->
     <script src="https://kit.fontawesome.com/958f62c7f8.js" crossorigin="anonymous"></script>
@@ -27,7 +28,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg p-3 mb-5 bg-white rounded">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -81,50 +82,40 @@
             </div>
         </div>
     </nav>
-    @include('alerts.msg')
-    <div class="">
-        @yield('single-page-with-out-side-and-content')
-        <div class="row mt-2">
-            <div class="col-md-3">
-                <aside class="py-4 ml-3">
-                    @yield('aside')
-                </aside>
-            </div>
-            <div class="col-md-8">
-                <main class="py-4">
-                    <div class="content-wrapper">
-                        <div class="content">
-                            <div class="container-fluid">
+    <div class="clearfix"></div>
+    {{--    @include('alerts.msg')--}}
+    @yield('single-page-with-out-side-and-content')
+    <div class="row mt-2">
+        <div class="col-md-3">
+            <aside class="py-4 ml-3">
+                @yield('aside')
+            </aside>
+        </div>
+        <div class="col-md-8">
+            <main class="py-4">
+                <div class="content-wrapper">
+                    <div class="content">
+                        <div class="container-fluid">
 
-                                <router-view></router-view>
+                            <router-view></router-view>
 
-                                <vue-progress-bar></vue-progress-bar>
+                            <vue-progress-bar></vue-progress-bar>
 
-                            </div>
                         </div>
                     </div>
-                </main>
-            </div>
+                </div>
+            </main>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 @stack('js')
 <script src="{{ asset('js/main/main.js') }}"></script>
 <script src="{{ mix('js/app.js') }}"></script>

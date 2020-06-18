@@ -95,6 +95,7 @@
     export default {
         mounted() {
             axios.get("admin/projects").then(data => console.log(data.data));
+            this.loadProjects();
         },
         data() {
             return {

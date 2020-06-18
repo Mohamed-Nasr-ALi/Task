@@ -132,7 +132,9 @@
             }
         },
         methods: {
-
+            mounted() {
+                this.loadProjects();
+            },
             editModalWindow(task) {
                 this.form.clear();
                 this.editMode = true
@@ -149,9 +151,10 @@
                             title: 'Task updated successfully'
                         })
 
-                      //  Fire.$emit('AfterCreatedTaskLoadIt');
+                        Fire.$emit('AfterCreatedTaskLoadIt');
 
                         $('#addNew').modal('hide');
+                        this.loadTasks();
                     })
                     .catch(() => {
                         console.log("Error.....")
@@ -190,6 +193,7 @@
 
                         $('#addNew').modal('hide');
                         $('.modal-backdrop').remove();
+                        this.loadTasks();
                     })
                     .catch(() => {
                         console.log("Error......")
