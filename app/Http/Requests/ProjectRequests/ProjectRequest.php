@@ -23,10 +23,16 @@ class ProjectRequest extends BaseFormRequest
      */
     public function rules()
     {
+        if (request('id')){
+            return [
+                'title' => 'required|string|max:255|min:3|unique:projects,title,'.request()->id
+            ];
+        }else{
+            return [
+                'title' => 'required|string|max:255|min:3|unique:projects,title'
+            ];
+        }
 
-        return [
-            'title' => 'required|string|max:255|min:3|unique:projects,title,'.request()->id
-        ];
     }
 
     /**
